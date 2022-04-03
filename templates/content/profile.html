@@ -302,15 +302,12 @@
         let file = files[0];
         let image = files[0].name;
         let content = $('#exampleFormControlTextarea1').val();
-        let user_id = "juun";
-        let profile_image = "http://file3.instiz.net/data/file3/2021/05/31/e/b/8/eb8d9ad2d779ca2a0b7acc2b67" +
-                "694a23.png";
+
         let fd = new FormData();
         fd.append('file', file);
         fd.append('image', image);
         fd.append('content', content);
-        fd.append('user_id', user_id);
-        fd.append('profile_image', profile_image);
+
 
         if (image.length <= 0) {
             alert("이미지가 비어있습니다.");

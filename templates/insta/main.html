@@ -244,9 +244,7 @@
                             aria-expanded="false">
 
                             <div style="width: 30px; height: 30px" class="profile_box">
-                                <img
-                                    class="profile_img"
-                                    src="{% get_media_prefix %}{{ user.thumbnail }}">
+                                <img class="profile_img" src="{% get_media_prefix %}{{ user.thumbnail }}">
 
                             </div>
                         </a>
@@ -280,14 +278,14 @@
         </nav>
 
         <!-- 바디 영역 -->
-        <div class="main_body">
-            <div class="left_body">
+        <div style="display: flex; flex-direction: row;text-align: center; justify-content: center;padding-top: 60px; background-color:#FAFAFA">
+          <div style="width: 500px;min-width: 500px;margin-right: 100px">
                 {% for feed in feeds %}
                     <!-- 여기서부터 피드 박스 -->
                     <div class="border feed_box">
                         <div class="feed_name">
                             <div class="profile_box">
-                                <img class="profile_img" src="{% get_media_prefix %}{{ user.thumbnail }}"/>
+                                <img class="profile_img" src="{% get_media_prefix %}{{ feed.profile_image }}"/>
                             </div>
                             <span class="feed_name_txt">
                                 juun
@@ -313,52 +311,56 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="feed_like">
-                            <p class="feed_txt">
-                                IU님 외
-                                <b>{{ feed.like_count }}명</b>이 좋아합니다</p>
-                        </div>
-                        <div class="feed_content">
+                        <div style="margin: 0 10px;text-align: left;font-size: 14px"> 춘식이 <b>외 {{ feed.like_count }}명</b>이
+                          좋아합니다.
+                      </div>
+                        <div class="feed_content" style="margin: 0 1px;text-align: left;font-size: 16px">
                             <p class="feed_txt">
                                 <b>
                                     {{ feed.user_id }}
                                 </b>
                                 {{ feed.content }}</p>
                         </div>
-                        <div class="feed_reply">
-                            <span class="feed_txt">
-                                <b>
-                                    peach
-                                </b>
-                                ㅇㅈㅇㅈ
-                            </span>
-                            <span class="feed_txt">
-                                <b>
-                                    abcdefg
-                                </b>
-                                ㅇㅈㅇㅈ
-                            </span>
+                        
+                        <div id="reply_list_{{ feed.id }}" >
+                            {% for reply in feed.reply_list %}
+                              <div style="margin: 0 11px;text-align: left;font-size: 14px">
+                                    <b>
+                                        {{reply.reply_user_id}}
+                                    </b>
+                                    {{reply.reply_content}}
+
+                                </div>
+
+                            {% endfor %}
                         </div>
-                        <div class="comment_box">
-                            <input
+                        <div class="comment_box", style="display:flex; flex-direction: row; align-items: center;">
+                            <input 
+                                id = "reply_{{ feed.id }}"
                                 type="text"
                                 class="form-control"
                                 style="box-shadow: none; border: none; outline: none;"
                                 placeholder="댓글 달기...">
+
+                            <div feed_id="{{ feed.id }}" class="upload_reply" style="width: 50px; color: cornflowerblue; font-weight: bold;">
+                                게시
+                            </div>
                         </div>
+
                     </div>
                 {% endfor %}
                 <!-- 여기까지 피드 박스 -->
             </div>
-            <div class="right_body">
+            <div class="right_body" >
+
                 <div class="feed_name" style="justify-content: space-between">
                     <div style="display: flex; align-items: center; ">
                         <div class="big_profile_box">
                             <img
                                 class="profile_img"
-                                src="http://file3.instiz.net/data/file3/2021/05/31/e/b/8/eb8d9ad2d779ca2a0b7acc2b67694a23.png">
+                                src="{% get_media_prefix %}{{ user.thumbnail }}">
                         </div>
-                        <div class="name_content">
+                        <div class="name_content" style="text-align: left;font-size: 14px">
                             <span class="feed_name_txt">
                                 {{ user.user_id }}
                             </span>
@@ -388,7 +390,7 @@
                                 class="profile_img"
                                 src="https://post-phinf.pstatic.net/MjAxNzA2MjlfMjU5/MDAxNDk4NzM5NzI3MjA0.Aon2aPyhufiwt9-Y21w0v1luZzlYnihR7Xcozypyf8Qg.QLFNlJRzJzd1TqWWSN0DyVeHxe8zsAxGc7PHwkNHy8gg.PNG/1483309553699.png?type=w1200">
                         </div>
-                        <div class="name_content">
+                        <div class="name_content" style="text-align: left;font-size: 14px">
                             <span class="feed_name_txt">
                                 peach
                             </span>
@@ -405,7 +407,7 @@
                                 class="profile_img"
                                 src="https://mblogthumb-phinf.pstatic.net/20160625_240/bjy0524_146683775176259uj4_JPEG/attachImage_312025754.jpeg?type=w800">
                         </div>
-                        <div class="name_content">
+                        <div class="name_content" style="text-align: left;font-size: 14px">
                             <span class="feed_name_txt">
                                 lion
                             </span>
@@ -422,8 +424,8 @@
                                 class="profile_img"
                                 src="https://t1.daumcdn.net/cfile/tistory/997B803359AB909330">
                         </div>
-                        <div class="name_content">
-                            <span class="feed_name_txt">
+                        <div class="name_content" style="text-align: left;font-size: 14px">
+                            <span class="feed_name_txt" >
                                 tokki
                             </span>
                             <span class="name_content_txt">
@@ -437,7 +439,7 @@
                         <div class="profile_box">
                             <img class="profile_img" src="https://img.theqoo.net/img/ZYmsV.jpg">
                         </div>
-                        <div class="name_content">
+                        <div class="name_content" style="text-align: left;font-size: 14px">
                             <span class="feed_name_txt">
                                 IU
                             </span>
@@ -455,7 +457,7 @@
                                 class="profile_img"
                                 src="https://mblogthumb-phinf.pstatic.net/20150203_243/songbook91_1422947129214CaSSa_JPEG/KakaoTalk_20150203_160413702.jpg?type=w2">
                         </div>
-                        <div class="name_content">
+                        <div class="name_content" style="text-align: left;font-size: 14px">
                             <span class="feed_name_txt">
                                 pikapika
                             </span>
@@ -468,7 +470,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="info_box">
+                <div class="info_box" style="text-align: left;">
                     <span>
                         소개 도움말 홍보센터 api 채용정보
                     </span>
@@ -586,15 +588,11 @@
                 let file = files[0];
                 let image = files[0].name;
                 let content = $('#exampleFormControlTextarea1').val();
-                let user_id = "juun";
-                let profile_image = "http://file3.instiz.net/data/file3/2021/05/31/e/b/8/eb8d9ad2d779ca2a0b7acc2b67" +
-                        "694a23.png";
+
                 let fd = new FormData();
                 fd.append('file', file);
                 fd.append('image', image);
                 fd.append('content', content);
-                fd.append('user_id', user_id);
-                fd.append('profile_image', profile_image);
 
                 if (image.length <= 0) {
                     alert("이미지가 비어있습니다.");
@@ -677,6 +675,41 @@
                 }
 
             }
+
+            $(".upload_reply").click(function (event) {
+              let feed_id = event.target.attributes.getNamedItem('feed_id').value;
+              let reply_id = 'reply_' + feed_id;
+              let reply_content = $('#' + reply_id).val();
+      
+              if (reply_content.length <= 0) {
+                  alert("댓글을 입력하세요");
+                  return 0;
+              }
+      
+              $.ajax({
+                  url: "/contents/reply/",
+                  data: {
+                      feed_id: feed_id,
+                      reply_content: reply_content
+                  },
+                  method: "POST",
+                  success: function (data) {
+                      console.log("성공");
+                      alert("댓글 성공");
+                      $("#reply_list_" + feed_id).append("<div style='margin: 0 11px;text-align: left;font-size: 14px'><b>{{ user.user_id }}</b> " + reply_content + "</div>")
+                      {#location.replace('/main/');#}
+      
+                  },
+                  error: function (request, status, error) {
+                      console.log("에러");
+                  },
+                  complete: function () {
+                      console.log("완료");
+                      $('#' + reply_id).val('');
+                  }
+              });
+      
+          });
         </script>
 
         <!-- Option 1: Bootstrap Bundle with Popper -->
