@@ -3,6 +3,7 @@
 
 secrets.json
 staticfiles/
+media/
 
 ### Django ###
 *.log
