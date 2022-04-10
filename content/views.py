@@ -20,8 +20,7 @@ class Main(APIView):
             return render(request, "user/login.html")
         
         user = User.objects.filter(email=email).first()
-        print(user.thumbnail)
-        
+
         if user is None:
             return render(request, "user/login.html")
         
@@ -49,13 +48,11 @@ class Main(APIView):
                                 is_liked=is_liked,
                                 is_marked=is_marked
                                 ))
-        print(user.thumbnail)
-        
         return render(request, "insta/main.html", context=dict(feeds=feed_list, user=user))
     
 class UploadFeed(APIView):
     def post(self, request):
-        
+        print('실행')
         file = request.FILES.get('file')
         uuid_name = uuid4().hex
         save_path = os.path.join(MEDIA_ROOT, uuid_name)

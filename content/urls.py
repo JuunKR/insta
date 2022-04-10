@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('contents/', UploadFeed.as_view(), name='contents'),
     path('contents/profiles/', Profile.as_view(), name='profiles'),
-    path('contents/reply/', UploadReply.as_view(), name='profiles'),
+    path('contents/reply/', UploadReply.as_view(), name='reply'),
     
     
 ]
